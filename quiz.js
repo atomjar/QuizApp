@@ -1,47 +1,45 @@
-var question;
-var answer;
-var response;
-var right = [];
-var wrong = [];
-var rightDisplay = document.getElementById('right');
-var wrongDisplay = document.getElementById('wrong');
-
-//serves as a mini database
 var questions = [
   ['What color is water?', 'blue'],
   ['What color is blood?', 'red'],
   ['What color is dirt?', 'brown']
 ]
 
+var right = []
+var wrong = []
 
-//grabs the button from the DOM
-let button = document.querySelector('button')
+var rightDisplay = document.getElementById("right")
+var wrongDisplay = document.getElementById("wrong")
 
+var button = document.querySelector("button")
 
-//gives the button a cue to listen for, then fires a function
-//function loops through the questions and answers
-button.addEventListener("click", function () {
+button.addEventListener("click", function() {
+  //loop through every question
   for (var i = 0; i < questions.length; i += 1) {
-    question = questions[i][0]
-    answer = questions[i][1]
-    response = prompt(question) //how to describe this?
-    if (response === answer) {
+    //create variables for question and answer
+    var question = questions[i][0]
+    var answer = questions[i][1]
+
+    //create variable for user's answer
+    var userAnswer = prompt(question)
+
+    //check to see if user answer matches actual answer
+    if (userAnswer === answer) {
       right.push(question)
     } else {
       wrong.push(question)
     }
   }
-  rightDisplay.innerHTML = "Right: " + buildList(right)
-  wrongDisplay.innerHTML = "Wrong: " + buildList(wrong)
+  //display list of right and wrongly answered questions
+  rightDisplay.innerHTML = "Right:" + buildList(right)
+  wrongDisplay.innerHTML = "Wrong:" + buildList(wrong)
 })
 
-
-//builds an HTML list based on the array that is passed into it
+//function that builds an HTML list based on content of an array
 function buildList (array) {
-var listHTML = '<ul>'
-for (var i = 0; i < array.length; i += 1) {
-  listHTML += '<li>' + array[i] + '</li>'
-}
-  listHTML + '</ul>'
+  var listHTML = "<ul>"
+  for (var i = 0; i < array.length; i += 1) {
+    listHTML +=   "<li>" + array[i] + "</li>"
+  }
+  listHTML += "</ul>"
   return listHTML
 }
